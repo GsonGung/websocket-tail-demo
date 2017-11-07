@@ -1,13 +1,12 @@
 package com.xxg.websocket;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
+import java.io.IOException;
+import java.io.InputStream;
 
 @ServerEndpoint("/log")
 public class LogWebSocketHandle {
@@ -22,12 +21,13 @@ public class LogWebSocketHandle {
 	public void onOpen(Session session) {
 		try {
 			// 执行tail -f命令
-			process = Runtime.getRuntime().exec("tail -f /var/log/syslog");
+			process = Runtime.getRuntime().exec("tail -f /usr/local/tomcat/logs/catalina.2017-11-07.log");
 			inputStream = process.getInputStream();
 			
 			// 一定要启动新的线程，防止InputStream阻塞处理WebSocket的线程
 			TailLogThread thread = new TailLogThread(inputStream, session);
 			thread.start();
+			System.out.println("启动一个线程获取日志文件信息！");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

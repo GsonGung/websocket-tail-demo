@@ -1,11 +1,10 @@
 package com.xxg.websocket;
 
+import javax.websocket.Session;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
-import javax.websocket.Session;
 
 public class TailLogThread extends Thread {
 	
@@ -25,6 +24,7 @@ public class TailLogThread extends Thread {
 			while((line = reader.readLine()) != null) {
 				// 将实时日志通过WebSocket发送给客户端，给每一行添加一个HTML换行
 				session.getBasicRemote().sendText(line + "<br>");
+				System.out.println("读取数据：" + line);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

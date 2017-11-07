@@ -6,7 +6,6 @@
 	<groupId>com.xxg</groupId>
 	<artifactId>websockettail</artifactId>
 	<version>1.0.0</version>
-
 	<packaging>war</packaging>
 
 	<properties>
@@ -24,7 +23,7 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-			<plugin>
+<!--			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>9.2.10.v20150310</version>
@@ -33,21 +32,25 @@
 					<webApp>
 						<contextPath>/</contextPath>
 					</webApp>
+				<stopKey></stopKey>
+				<stopPort></stopPort>
+				</configuration>
+			</plugin>-->
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 
 	<dependencies>
-
 		<dependency>
 			<groupId>javax.websocket</groupId>
 			<artifactId>javax.websocket-api</artifactId>
 			<version>1.1</version>
 			<scope>provided</scope>
 		</dependency>
-
 	</dependencies>
-
 
 </project>
